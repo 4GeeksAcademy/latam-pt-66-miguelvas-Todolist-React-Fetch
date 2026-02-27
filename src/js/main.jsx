@@ -10,9 +10,11 @@ import '../styles/index.css'
 
 // components
 import Home from './components/Home';
+import Fetch from './components/Fetch';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <>
     <Home/>
-  </React.StrictMode>,
+    <Fetch/>
+  </>,
 )
