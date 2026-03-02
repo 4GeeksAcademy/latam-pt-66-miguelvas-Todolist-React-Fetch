@@ -15,6 +15,5 @@ import Fetch from './components/Fetch';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <>
     <Home/>
-    <Fetch/>
   </>,
 )
