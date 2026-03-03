@@ -3,11 +3,11 @@ import React, { useState, useEffect } from "react";
 const Home = () => {
     const [task, setTask] = useState("");
     const [list, setList] = useState([]);
-    const [username, setUsername] = useState(""); // Nombre de usuario actual
+    const [username, setUsername] = useState("Miki0711"); // Nombre de usuario actual
 
     const URL_BASE = 'https://playground.4geeks.com/todo';
     const USER_URL = `${URL_BASE}/users/${username}`;
-    const TODOS_URL = `${URL_BASE}/todos/${username}`;
+    const TODO_URL = `${URL_BASE}/todos/${username}`;
 
 
     // FUNCIONES API
@@ -31,7 +31,7 @@ const Home = () => {
     const addTask = async (e) => {
         if (e.key === "Enter" && task !== "") {
             try {
-                const response = await fetch(TODOS_URL, {
+                const response = await fetch(TODO_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -68,16 +68,15 @@ const Home = () => {
         }
     };
 
-    // Recargar tareas 
+    // Recargar tareas
     useEffect(() => {
         getTodos();
-    }, [username]);
+    }, []);
 
 
     // HANDLERS 
     const taskHandler = (e) => setTask(e.target.value);
     const userHandler = (e) => setUsername(e.target.value);
-
 
 
     return (
@@ -92,7 +91,9 @@ const Home = () => {
                         value={username} 
                         onChange={userHandler}
                     />
-                    <button className="btn btn-outline-primary" onClick={getTodos}>Cambiar Usuario</button>
+                    <button className="btn btn-outline-primary" onClick={getTodos}>
+                        Cambiar Usuario
+                    </button>
                 </div>
             </div>
 
@@ -120,7 +121,12 @@ const Home = () => {
                         list.map((item) => (
                             <li key={item.id} className="list-group-item d-flex justify-content-between bg-dark text-white border-secondary">
                                 {item.label}
-                                <button className="btn btn-outline-danger btn-sm" onClick={() => deleteTask(item.id)}> X </button>
+                                <button 
+                                    className="btn btn-outline-danger btn-sm" 
+                                    onClick={() => deleteTask(item.id)}
+                                >
+                                    X
+                                </button>
                             </li>
                         ))
                     )}
